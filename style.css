@@ -16,12 +16,12 @@ header {
   align-items: center;
   position: relative;
 }
-
+/*
 header img.logo {
-  max-width: 100px;   /* Ajustez cette valeur pour la taille souhaitée */
+  max-width: 100px;
   height: auto;
   margin-bottom: 0.5rem;
-}
+}*/
 
 .language-selector {
   margin-top: 1rem;
