@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculateur SPT</title>
+  <!-- Lien vers le manifeste -->
+  <link rel="manifest" href="manifest.json">
+  <!-- Couleur du thème pour l'OS et le navigateur (affichée par exemple dans la barre d'adresse sous Android) -->
+  <meta name="theme-color" content="#444">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <!-- Le logo "sio.png" doit se trouver dans le même dossier -->
+    <img src="sio.png" alt="Logo Sio" class="logo">
+    <h1 id="pageTitle">Calculateur SPT</h1>
+    <div class="language-selector">
+      <label id="languageLabel" for="langSelect">Langue :</label>
+      <select id="langSelect">
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <form id="sptForm">
+      <!-- Données brutes SPT -->
+      <fieldset>
+        <legend id="rawDataLegend">Données brutes SPT</legend>
+        <label for="n2" id="n2Label">N<sub>2</sub> (coups 15-30 cm) :</label>
+        <input type="number" id="n2" step="any" required>
+        <label for="n3" id="n3Label">N<sub>3</sub> (coups 30-45 cm) :</label>
+        <input type="number" id="n3" step="any" required>
+      </fieldset>
+
+      <!-- Corrections initiales -->
+      <fieldset>
+        <legend id="initialCorrectionLegend">Corrections initiales</legend>
+        <label for="hammerType" id="hammerTypeLabel">Type de marteau :</label>
+        <select id="hammerType">
+          <option value="donut">Donut</option>
+          <option value="safety">Safety</option>
+          <option value="automatic">Automatique</option>
+        </select>
+        <label for="rodLength" id="rodLengthLabel">Longueur de la tige (m) :</label>
+        <input type="number" id="rodLength" step="any" required>
+        <label for="boreDiameter" id="boreDiameterLabel">Diamètre de forage (mm) :</label>
+        <input type="number" id="boreDiameter" step="any" required>
+        <label id="casingLabel" for="casing">
+          <input type="checkbox" id="casing">
+          <span id="casingText">Tubage présent</span>
+        </label>
+      </fieldset>
+
+      <!-- Sélection du type de sol -->
+      <fieldset>
+        <legend id="soilTypeLegend">Type de sol</legend>
+        <label>
+          <input type="radio" name="soilType" value="granular" checked>
+          <span id="granularOption">Granulaire</span>
+        </label>
+        <label>
+          <input type="radio" name="soilType" value="cohesive">
+          <span id="cohesiveOption">Cohésif</span>
+        </label>
+      </fieldset>
+
+      <!-- Paramètres pour sols granulaires -->
+      <fieldset id="granularFields">
+        <legend id="granularLegend">Paramètres pour sols granulaires</legend>
+        <label for="sigma" id="sigmaLabel">Contrainte effective σ (kPa) :</label>
+        <input type="number" id="sigma" step="any" required>
+        <label for="cnModel" id="cnModelLabel">Modèle de CN :</label>
+        <select id="cnModel">
+          <option value="liao">Liao &amp; Whitman</option>
+          <option value="peck">Peck et al.</option>
+        </select>
+        <label for="waterTable" id="waterTableLabel">Profondeur de la nappe (Z, m) :</label>
+        <input type="number" id="waterTable" step="any" required>
+        <label for="foundationDepth" id="foundationDepthLabel">Profondeur de la fondation (Df, m) :</label>
+        <input type="number" id="foundationDepth" step="any" required>
+        <label for="foundationWidth" id="foundationWidthLabel">Largeur de la fondation (B, m) :</label>
+        <input type="number" id="foundationWidth" step="any" required>
+      </fieldset>
+
+      <!-- Paramètres pour sols cohésifs -->
+      <fieldset id="cohesiveFields" style="display: none;">
+        <legend id="cohesiveLegend">Paramètres pour sols cohésifs</legend>
+        <label for="kCoefficient" id="kCoefficientLabel">Coefficient k :</label>
+        <input type="number" id="kCoefficient" step="any" required>
+      </fieldset>
+
+      <button type="button" id="calculateButton">Calculer</button>
+    </form>
+
+    <div id="results">
+      <h2 id="resultsTitle">Résultats</h2>
+      <div id="output"></div>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
