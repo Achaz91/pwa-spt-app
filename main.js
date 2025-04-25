@@ -1,4 +1,4 @@
-// Enregistrer le service worker pour activer le mode PWA
+// Enregistrement du service worker pour activer les fonctionnalités PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js')
@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
         console.log('ServiceWorker enregistré avec succès : ', registration.scope);
       })
       .catch(function(error) {
-        console.log('L’enregistrement du ServiceWorker a échoué : ', error);
+        console.log("L'enregistrement du ServiceWorker a échoué : ", error);
       });
   });
 }
